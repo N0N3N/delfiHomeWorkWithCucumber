@@ -13,27 +13,15 @@ public class TabBusinessDesktop {
     private CoreFunсtions core;
     private static final Logger LOGGER = LogManager.getLogger(TabBusinessDesktop.class);
     private static final By TITLES = By.xpath("//h3/a[@class=\"top2012-title\"]");
-    private List<WebElement> articles;
 
     public TabBusinessDesktop(CoreFunсtions cf){
         this.core = cf;
     }
 
-    public void hello(){
-        System.out.println("Hello");
-
-        articles = core.getArticleNames(TITLES);
-        System.out.println(articles.get(0).getText());
-        System.out.println(articles.get(1).getText());
-        System.out.println(articles.get(2).getText());
+    public List<WebElement> getNewsList(){
+        LOGGER.info("Getting List of Elements");
+        List<WebElement> news = core.getListOfElements(TITLES);
+        return news;
     }
-
-
-   // public String articleNames(int titleNumber) {
-    //    LOGGER.info("Getting Article Names: ");
-    //    System.out.println(articles);
-     //}
-
-
 
 }

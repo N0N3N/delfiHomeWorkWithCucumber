@@ -1,4 +1,4 @@
-package pageObjects.desktop;
+package pageObjects.mobile;
 
 
 import coreFunctions.CoreFunсtions;
@@ -9,21 +9,20 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class HomePageDesktop {
+public class HomePageMobile {
     private CoreFunсtions core;
     private List<WebElement> tabs;
 
     private static final By TABLIST = By.xpath("//span[@itemprop=\"name\"]");
-    private static final String HOME_PAGE_DESKTOP = "rus.delfi.lv";
+    private static final String HOME_PAGE_MOBILE = "m.rus.delfi.lv";
 
-    private static final Logger LOGGER = LogManager.getLogger(HomePageDesktop.class);
-    public HomePageDesktop(CoreFunсtions bs){
+    private static final Logger LOGGER = LogManager.getLogger(HomePageMobile.class);
+    public HomePageMobile(CoreFunсtions bs){
         this.core = bs;}
 
-
-    public void openHomePageDesk(){
+    public void openHomePageMob(){
         LOGGER.info("Open HomePage for Desktop");
-        core.openWebPage(HOME_PAGE_DESKTOP);
+        core.openWebPage(HOME_PAGE_MOBILE);
     }
 
     public void clickTab(int tabNumber){

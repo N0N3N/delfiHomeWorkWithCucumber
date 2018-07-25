@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import javax.xml.bind.Element;
 import java.util.List;
 
 public class CoreFunсtions {
@@ -36,8 +37,8 @@ public class CoreFunсtions {
         return driver.findElements(element).get(titleNumber);
     }
 
-    public WebElement getWebElement(By element) {
-        return driver.findElement(element);
+    public WebElement getWebElement(By path) {
+        return driver.findElement(path);
     }
 
     public List<WebElement> getArticleNames(By path){
@@ -45,5 +46,16 @@ public class CoreFunсtions {
         List<WebElement> articles = driver.findElements(path);
         return articles;
     }
+
+    public void clickElement(By path){
+        driver.findElement(path).click();
+    }
+
+    public List<WebElement> getListOfElements (By path){
+        Assert.assertFalse("Elements NOT found", driver.findElements(path).isEmpty());
+        List<WebElement> elements = driver.findElements(path);
+        return elements;
+    }
+
 
 }
