@@ -7,9 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import javax.xml.bind.Element;
 import java.util.List;
+
+import static java.lang.Boolean.TRUE;
 
 public class CoreFunсtions {
     private WebDriver driver;
@@ -22,9 +22,7 @@ public class CoreFunсtions {
     }
 
     public void openWebPage(String url) {
-        if (!url.contains("http://") && !url.contains("https://")) {
-            url = "http://" + url;
-        }
+        if (!url.contains("http://") && !url.contains("https://")) { url = "http://" + url; }
         LOGGER.info("Opening web page: " + url);
         driver.get(url);
     }
@@ -33,7 +31,7 @@ public class CoreFunсtions {
         driver.close();
     }
 
-    public WebElement getWebElements(By element, int titleNumber) {
+    public WebElement getWebElementFromList(By element, int titleNumber) {
         return driver.findElements(element).get(titleNumber);
     }
 
@@ -56,6 +54,12 @@ public class CoreFunсtions {
         List<WebElement> elements = driver.findElements(path);
         return elements;
     }
+
+
+    public boolean isElementPresent(By path){
+        return getListOfElements(path).isEmpty();
+    }
+
 
 
 }

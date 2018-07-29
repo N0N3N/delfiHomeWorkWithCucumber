@@ -26,7 +26,7 @@ public class HomePageMobile {
     }
 
     public void clickTab(int tabNumber){
-        LOGGER.info("Clicking Tab "+core.getWebElements(TABLIST, tabNumber).getText());
+        LOGGER.info("Clicking Tab "+core.getWebElementFromList(TABLIST, tabNumber).getText());
         tabs = core.getListOfElements(TABLIST);
         tabs.get(tabNumber).click();
     }
