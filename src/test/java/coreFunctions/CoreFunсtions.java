@@ -7,9 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.List;
 
-import static java.lang.Boolean.TRUE;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 
 public class CoreFunсtions {
     private WebDriver driver;
@@ -22,12 +23,18 @@ public class CoreFunсtions {
     }
 
     public void openWebPage(String url) {
-        if (!url.contains("http://") && !url.contains("https://")) { url = "http://" + url; }
+        if (!url.contains("http://") && !url.contains("https://")) {
+            url = "http://" + url;
+        }
         LOGGER.info("Opening web page: " + url);
         driver.get(url);
     }
 
-    public void closeDriver(){
+    public void waitPageLoad(){
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+    }
+
+    public void closeDriver() {
         driver.close();
     }
 
@@ -39,27 +46,26 @@ public class CoreFunсtions {
         return driver.findElement(path);
     }
 
-    public List<WebElement> getArticleNames(By path){
+    public List<WebElement> getArticleNames(By path) {
         Assert.assertFalse("Element NOT found", driver.findElements(path).isEmpty());
         List<WebElement> articles = driver.findElements(path);
         return articles;
     }
 
-    public void clickElement(By path){
+    public void clickElement(By path) {
         driver.findElement(path).click();
     }
 
-    public List<WebElement> getListOfElements (By path){
+    public List<WebElement> getListOfElements(By path) {
         Assert.assertFalse("Elements NOT found", driver.findElements(path).isEmpty());
         List<WebElement> elements = driver.findElements(path);
         return elements;
     }
 
 
-    public boolean isElementPresent(By path){
+    public boolean isElementPresent(By path) {
         return getListOfElements(path).isEmpty();
     }
-
 
 
 }

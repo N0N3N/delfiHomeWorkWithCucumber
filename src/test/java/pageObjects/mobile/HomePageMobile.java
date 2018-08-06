@@ -11,24 +11,34 @@ import java.util.List;
 
 public class HomePageMobile {
     private CoreFunсtions core;
-    private List<WebElement> tabs;
 
-    private static final By TABLIST = By.xpath("//span[@itemprop=\"name\"]");
+    private static final By MENU_OPEN = By.xpath("//a[@class = 'menu-open']");
     private static final String HOME_PAGE_MOBILE = "m.rus.delfi.lv";
+    private static final String HOME_PAGE_MOBILE_LV = "m.delfi.lv";
 
     private static final Logger LOGGER = LogManager.getLogger(HomePageMobile.class);
     public HomePageMobile(CoreFunсtions bs){
         this.core = bs;}
 
-    public void openHomePageMob(){
+    private void openHomePageMob(){
         LOGGER.info("Open HomePage for Desktop");
-        core.openWebPage(HOME_PAGE_MOBILE);
+        core.openWebPage(HOME_PAGE_MOBILE_LV);
     }
 
-    public void clickTab(int tabNumber){
-        LOGGER.info("Clicking Tab "+core.getWebElementFromList(TABLIST, tabNumber).getText());
-        tabs = core.getListOfElements(TABLIST);
-        tabs.get(tabNumber).click();
+    private void openMenu(){
+        System.out.println("Click Menu");
+        core.clickElement(MENU_OPEN);
     }
+    public void clickTabName(String tabName){
+        openHomePageMob();
+        openMenu();
+        core.waitPageLoad();
+        System.out.println("Click Tab");
+        core.clickElement(By.xpath("//a[contains (span, '"+tabName+"')]"));
+    }
+
+
+
+
 
 }
