@@ -10,16 +10,15 @@ import java.util.List;
 
 public class TabWomanDesktop {
     private CoreFunсtions core;
-    private static final Logger LOGGER = LogManager.getLogger(TabWomanDesktop.class);
     private static final By TITLES = By.xpath("//h1[@class=\"headline-title text-lg\"]");
+    private static final String PAGE = "http://delfi.lv/vina/";
 
     public TabWomanDesktop(CoreFunсtions cf){
         this.core = cf;
     }
 
-    public List<WebElement> getNewsList(){
-        LOGGER.info("Getting List of Elements");
-        List<WebElement> news = core.getListOfElements(TITLES);
-        return news;
-    }
+/*    public String[][] getNewsList(){
+        String[][] sum = core.getNewsList(TITLES, COMMENTS);
+        return sum;
+    }*/
 }

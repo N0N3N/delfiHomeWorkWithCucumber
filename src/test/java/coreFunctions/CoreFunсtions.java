@@ -30,7 +30,7 @@ public class CoreFunсtions {
         driver.get(url);
     }
 
-    public void waitPageLoad(){
+    public void waitPageLoad() {
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
     }
 
@@ -65,6 +65,59 @@ public class CoreFunсtions {
 
     public boolean isElementPresent(By path) {
         return getListOfElements(path).isEmpty();
+    }
+
+    public void checkNews(String[][] deskSum, String[][] mobSum) {
+        LOGGER.info("Checking news from Mob. and Desk. versions");
+        System.out.println(" ");
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Nr." + i + "  " + deskSum[0][i] + " " + deskSum[1][i] + " VS " + mobSum[0][i] + " " + mobSum[1][i]);
+            if (deskSum[0][i].contains(mobSum[0][i])) {
+                System.out.print("Same Name      ");
+            } else
+                System.out.print("Different Name     ");
+
+            if (deskSum[1][i].contains(mobSum[1][i])) {
+                System.out.println("Same Comment count");
+                System.out.println(" ");
+            } else {
+                System.out.println("Different Comment count");
+                System.out.println(" ");
+            }
+        }
+    }
+
+    public void checkNewsSimle(String[] deskSum, String[] mobSum) {
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Nr." + i + "  " + deskSum[i] + " VS " + mobSum[i]);
+            if (deskSum[i].contains(mobSum[i])) {
+                System.out.println("Same");
+            } else
+                System.out.println("Different");
+        }
+    }
+
+
+    public String[][] getNewsList(By TITLES, By COMMENTS) {
+        String[][] sum = {{"", "", ""}, {"", "", ""}};
+        LOGGER.info("Getting list of news:");
+        //System.out.println(" ");
+        for (int i = 0; i < 3; i++) {
+            sum[0][i] = getListOfElements(TITLES).get(i).getText();
+            sum[1][i] = getListOfElements(COMMENTS).get(i).getText();
+            //System.out.println(sum[0][i] + "  " + sum[1][i]);
+        }
+        //System.out.println(" ");
+        return sum;
+    }
+
+    public String[] getNewsListSimple(By TITLES) {
+        String[] sum = {"", "", ""};
+        for (int i = 0; i < 3; i++) {
+            sum[i] = getListOfElements(TITLES).get(i).getText();
+            // System.out.println(sum[i]);
+        }
+        return sum;
     }
 
 

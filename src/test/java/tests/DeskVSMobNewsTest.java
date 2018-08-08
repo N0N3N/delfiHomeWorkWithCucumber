@@ -29,28 +29,33 @@ public class DeskVSMobNewsTest {
     public static final ImmutableList<String> TAB_NAMES = ImmutableList.of("Бизнес", "Репортер", "Woman");
     public static final ImmutableList<String> TAB_NAMES_LV = ImmutableList.of("Bizness", "Aculiecinieks", "Viņa");
 
-    private String[] deskList = {"","",""};
-    private String[] mobList = {"","",""};
+    private String[][] deskList = {{"", "", ""}, {"", "", ""}};
+    private String[][] mobList = {{"", "", ""}, {"", "", ""}};
+    //private String[] deskList = {"", "", ""};
+    //private String[] mobList = {"", "", ""};
 
     @Test
     public void print3BusinessNewsDesk(){
 
-        homeDesk.clickTabName(TAB_NAMES_LV.get(0));
-        //businessDesk.getNewsList();
+        //homeDesk.clickTabName(TAB_NAMES_LV.get(0));
+        //deskList[0][0]="Gada laikā cenas augušas par 2,6%(4)"; // For check!
+        //mobList[0][0]="Gada laikā cenas augušas par 2,6%(4)";
         deskList = businessDesk.getNewsList();
-        //homeMob.clickTabName(TAB_NAMES_LV.get(0));
         mobList = businessMob.getNewsList();
-        //System.out.println(mobList[2]);
-        deskList[0]="000";
-        mobList[0]="000";
+        core.checkNews(deskList, mobList);
 
-        for (int i = 0; i<3; i++){
-            System.out.println("Nr. "+i);
-            if (deskList[i] == mobList[i])
-                System.out.println("Same");
-            else
-                System.out.println("Not same");
-        }
+        deskList = reporterDesk.getNewsList();
+        mobList = reporterMob.getNewsList();
+        core.checkNews(deskList, mobList);
+
+        // No Women version since there is NO Mob version at all!
+
+/*
+        deskList = businessDesk.getNewsListSimple();
+        mobList = businessMob.getNewsListSimple();
+        core.checkNewsSimle(deskList, mobList);
+*/
+
         core.closeDriver();
     }
 }
