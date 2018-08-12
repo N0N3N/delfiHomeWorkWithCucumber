@@ -19,7 +19,7 @@ public class TabReporterMobile {
 
     public String[][] getNewsList() {
         core.openWebPage(PAGE);
-        String[][] sum = core.getNewsAttributes(NEWS, A1, A2);
+        String[][] sum = core.getNewsAttributesForRepMobile(NEWS, A1, A2);
         return sum;
     }
 }

@@ -26,6 +26,4 @@ public class DeskVSMobNewsTest {
         core.closeDriver();
     }
 
-
-
 }

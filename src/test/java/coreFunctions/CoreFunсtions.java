@@ -76,9 +76,24 @@ public class CoreFunсtions {
         LOGGER.info("Getting list of news:");
         //System.out.println(" ");
         for (int i = 0; i < 3; i++) {
-            sum[0][i] = getNewsElements(NEWS).get(i).findElement(By.xpath("./a[1]")).getText();
+            sum[0][i] = getNewsElements(NEWS).get(i).findElement(a1).getText();
             System.out.print(i + " " + sum[0][i]);
-            sum[1][i] = getNewsElements(NEWS).get(i).findElement(By.xpath("./a[2]")).getText();
+            sum[1][i] = getNewsElements(NEWS).get(i).findElement(a2).getText();
+            System.out.println(" " + sum[1][i]);
+        }
+
+        return sum;
+
+    }
+
+    public String[][] getNewsAttributesForRepMobile(By NEWS, By a1, By a2) {
+        String[][] sum = {{"", "", ""}, {"", "", ""}};
+        LOGGER.info("Getting list of news:");
+        //System.out.println(" ");
+        for (int i = 0; i < 3; i++) {
+            sum[0][i] = getNewsElements(NEWS).get(i+1).findElement(a1).getText();
+            System.out.print(i + " " + sum[0][i]);
+            sum[1][i] = getNewsElements(NEWS).get(i+1).findElement(a2).getText();
             System.out.println(" " + sum[1][i]);
         }
 
