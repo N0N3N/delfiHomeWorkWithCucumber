@@ -30,38 +30,16 @@ public class CoreFunсtions {
         driver.get(url);
     }
 
-    public void waitPageLoad() {
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-    }
-
     public void closeDriver() {
         driver.close();
     }
 
-    public WebElement getWebElementFromList(By element, int titleNumber) {
-        return driver.findElements(element).get(titleNumber);
-    }
-
-    public WebElement getWebElement(By path) {
-        return driver.findElement(path);
-    }
-
-    public List<WebElement> getArticleNames(By path) {
-        Assert.assertFalse("Element NOT found", driver.findElements(path).isEmpty());
-        List<WebElement> articles = driver.findElements(path);
-        return articles;
-    }
-
-    public void clickElement(By path) {
-        driver.findElement(path).click();
-    }
 
     public List<WebElement> getListOfElements(By path) {
         Assert.assertFalse("Elements NOT found", driver.findElements(path).isEmpty());
         List<WebElement> elements = driver.findElements(path);
         return elements;
     }
-
 
     public boolean isElementPresent(By path) {
         return getListOfElements(path).isEmpty();
@@ -87,38 +65,24 @@ public class CoreFunсtions {
         }
     }
 
-    public void checkNewsSimle(String[] deskSum, String[] mobSum) {
-        for (int i = 0; i < 3; i++) {
-            System.out.println("Nr." + i + "  " + deskSum[i] + " VS " + mobSum[i]);
-            if (deskSum[i].contains(mobSum[i])) {
-                System.out.println("Same");
-            } else
-                System.out.println("Different");
-        }
+
+    public List<WebElement> getNewsElements(By NEWS) {
+        List<WebElement> newsElements = driver.findElements(NEWS);
+        return newsElements;
     }
 
-
-    public String[][] getNewsList(By TITLES, By COMMENTS) {
+    public String[][] getNewsAttributes(By NEWS, By a1, By a2) {
         String[][] sum = {{"", "", ""}, {"", "", ""}};
         LOGGER.info("Getting list of news:");
         //System.out.println(" ");
         for (int i = 0; i < 3; i++) {
-            sum[0][i] = getListOfElements(TITLES).get(i).getText();
-            sum[1][i] = getListOfElements(COMMENTS).get(i).getText();
-            //System.out.println(sum[0][i] + "  " + sum[1][i]);
+            sum[0][i] = getNewsElements(NEWS).get(i).findElement(By.xpath("./a[1]")).getText();
+            System.out.print(i + " " + sum[0][i]);
+            sum[1][i] = getNewsElements(NEWS).get(i).findElement(By.xpath("./a[2]")).getText();
+            System.out.println(" " + sum[1][i]);
         }
-        //System.out.println(" ");
+
         return sum;
+
     }
-
-    public String[] getNewsListSimple(By TITLES) {
-        String[] sum = {"", "", ""};
-        for (int i = 0; i < 3; i++) {
-            sum[i] = getListOfElements(TITLES).get(i).getText();
-            // System.out.println(sum[i]);
-        }
-        return sum;
-    }
-
-
 }

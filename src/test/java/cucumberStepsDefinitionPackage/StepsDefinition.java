@@ -7,11 +7,10 @@ import cucumber.api.java.en.When;
 
 public class StepsDefinition {
     CoreFunсtions core = new CoreFunсtions();
-    private static final String HOME_PAGE_DESKTOP = "rus.delfi.lv";
 
-    @Given("Delfi home page")
-    public void open_home_webpage() {
-        core.openWebPage(HOME_PAGE_DESKTOP);
+    @Given("Opening webpage (.*)")
+    public void cucumberOpenWebPage(String webPage){
+        core.openWebPage(webPage);
     }
 
     @When("we are searching for (.*)")

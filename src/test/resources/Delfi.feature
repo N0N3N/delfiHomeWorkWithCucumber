@@ -1,6 +1,6 @@
 Feature: Testing Delfi page
   Scenario: First Scenario
-    Given Delfi home page
+    Given Opening webpage http://rus.delfi.lv/
     When we are searching for Weather
     And  Delfi home page
 

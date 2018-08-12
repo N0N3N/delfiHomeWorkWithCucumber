@@ -7,15 +7,11 @@ import java.util.List;
 
 public class TabReporterMobile {
     private CoreFunсtions core;
-    private static final By TITLES = By.xpath("//div[@class = 'md-mosaic']/div/div/a[1]");
-    private static final By COMMENTS = By.xpath("//div[@class = 'md-mosaic']/div/div/a[2]");
-    //private static final String PAGE = "http://m.delfi.lv/aculiecinieks/";
-    private static final String PAGE = "http://m.rus.delfi.lv/reporter/";
-    private List<WebElement> newsNames;
-    private List<WebElement> newsComments;
-    //private List<String> sum = new ArrayList<String>();
-    private String[] sum = {"","",""};
 
+    private static final By NEWS = By.xpath("//div[@class = 'md-mosaic']/div/div");
+    private static final By A1 = By.xpath("./a[1]");
+    private static final By A2 = By.xpath("./a[2]");
+    private static final String PAGE = "http://m.rus.delfi.lv/reporter/";
 
     public TabReporterMobile(CoreFunсtions cf){
         this.core = cf;
@@ -23,7 +19,7 @@ public class TabReporterMobile {
 
     public String[][] getNewsList() {
         core.openWebPage(PAGE);
-        String[][] sum = core.getNewsList(TITLES, COMMENTS);
+        String[][] sum = core.getNewsAttributes(NEWS, A1, A2);
         return sum;
     }
 }
