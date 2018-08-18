@@ -10,8 +10,8 @@ public class TabReporterDesktop {
 
     private static final String PAGE = "http://www.delfi.lv/reporter/";
     private static final By NEWS = By.xpath("//h3[@class = 'top2012-title']");
-    private static final By A1 = By.xpath("./a/a[1]");
-    private static final By A2 = By.xpath("./a/a[2]");
+    private static final By A1 = By.xpath("./a[1]");
+    private static final By A2 = By.xpath("./a[2]");
 
     public TabReporterDesktop(CoreFunсtions cf){
         this.core = cf;
